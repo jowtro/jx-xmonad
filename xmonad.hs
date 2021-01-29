@@ -199,7 +199,7 @@ myLayout = avoidStruts(tiled ||| Mirror tiled ||| Full)
 myManageHook = composeAll
     [ className =? "MPlayer"        --> doFloat
     , className =? "Gimp"           --> doFloat
-    , className =? "Skype"           --> doFloat
+    , className =? "Skype"          --> doFloat
     , resource  =? "desktop_window" --> doIgnore
     , resource  =? "kdesktop"       --> doIgnore ]
 
@@ -224,16 +224,15 @@ myLogHook = return ()
 
 ------------------------------------------------------------------------
 -- Startup hook
-
--- Perform an arbitrary action each time xmonad starts or is restarted
--- with mod-q.  Used by, e.g., XMonad.Layout.PerWorkspace to initialize
--- per-workspace layout choices.
---
--- By default, do nothing.
+-- stalonetray - systemtray icons
+-- compton render handler
+-- nitrogen wallpaper manager
+-- xrand monitor handler/tool
 myStartupHook = do
       spawnOnce "bash ~/xrand_conf"
       spawnOnce "nitrogen --restore &"
       spawnOnce "compton &"
+      spawnOnce "stalonetray &"
 
 ------------------------------------------------------------------------
 -- Now run xmonad with all the defaults we set up.
