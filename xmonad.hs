@@ -7,8 +7,10 @@ import XMonad
 import Graphics.X11.ExtraTypes.XF86
 import XMonad.Hooks.ManageDocks
 import qualified XMonad.StackSet as W
-import XMonad.Util.Run (spawnPipe)
+import XMonad.Util.Run (spawnPipe, hPutStrLn)
 import XMonad.Util.SpawnOnce
+import XMonad.Hooks.DynamicLog
+import XMonad.Hooks.SetWMName
 myTerminal = "rxvt"
 
 -- Whether focus follows the mouse pointer.
@@ -213,7 +215,7 @@ myEventHook = mempty
 -- Perform an arbitrary action on each internal state change or X event.
 -- See the 'XMonad.Hooks.DynamicLog' extension for examples.
 --
-myLogHook = return ()
+myLogHook = return()
 
 ------------------------------------------------------------------------
 -- Startup hook
@@ -221,11 +223,19 @@ myLogHook = return ()
 -- compton render handler
 -- nitrogen wallpaper manager
 -- xrand monitor handler/tool
+-- autostart
 myStartupHook = do
   spawnOnce "bash ~/xrand_conf"
   spawnOnce "nitrogen --restore &"
   spawnOnce "compton &"
-  spawnOnce "stalonetray &"
+  spawnOnce "stalonetray -c ~/.stalonetrayrc &"
+
+-- Color of current window title in xmobar.
+  -- Used to be #00CC00
+xmobarTitleColor = "#00CC00"
+
+-- Color of current workspace in xmobar.
+xmobarCurrentWorkspaceColor = "#CEFFAC"
 
 ------------------------------------------------------------------------
 -- Now run xmonad with all the defaults we set up.
@@ -234,7 +244,11 @@ myStartupHook = do
 --
 main = do
   xmproc <- spawnPipe "xmobar -x 0 /home/jonnas/.config/xmobar/xmobarrc"
-  xmonad $ docks defaults
+  xmonad $ docks defaults {
+      logHook = dynamicLogWithPP $ def { ppOutput = hPutStrLn xmproc }
+  }
+
+
 
 -- A structure containing your configuration settings, overriding
 -- fields in the default config. Any you don't override, will
@@ -259,8 +273,8 @@ defaults =
       -- hooks, layouts
       layoutHook = myLayout,
       manageHook = myManageHook,
-      handleEventHook = myEventHook,
-      logHook = myLogHook,
+      handleEventHook = myEventHook ,
+      logHook = myLogHook ,
       startupHook = myStartupHook
     }
 
