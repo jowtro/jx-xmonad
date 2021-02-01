@@ -226,9 +226,9 @@ myLogHook = return()
 -- autostart
 myStartupHook = do
   spawnOnce "bash ~/xrand_conf"
+  spawnOnce "stalonetray &"
   spawnOnce "nitrogen --restore &"
   spawnOnce "compton &"
-  spawnOnce "stalonetray -c ~/.stalonetrayrc &"
 
 -- Color of current window title in xmobar.
   -- Used to be #00CC00
