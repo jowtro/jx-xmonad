@@ -9,7 +9,6 @@ import XMonad.Hooks.ManageDocks
 import qualified XMonad.StackSet as W
 import XMonad.Util.Run (spawnPipe)
 import XMonad.Util.SpawnOnce
-
 myTerminal = "rxvt"
 
 -- Whether focus follows the mouse pointer.
@@ -100,8 +99,9 @@ myKeys conf@(XConfig {XMonad.modMask = modm}) =
       ((modm .|. shiftMask, xK_slash), spawn ("echo \"" ++ help ++ "\" | xmessage -file -")),
        -- sound control via keybind requires pactl
       ((0, xF86XK_AudioMute), spawn "pactl set-sink-mute @DEFAULT_SINK@ toggle"),
-      ((0, xF86XK_AudioLowerVolume), spawn "pactl set-sink-volume @DEFAULT_SINK@ -10%"),
-      ((0, xF86XK_AudioRaiseVolume), spawn "pactl set-sink-volume @DEFAULT_SINK@ +10%")
+      ((0, xF86XK_AudioLowerVolume), spawn "pactl set-sink-volume @DEFAULT_SINK@ -4%"),
+      ((0, xF86XK_AudioRaiseVolume), spawn "pactl set-sink-volume @DEFAULT_SINK@ +4%"),
+      ((0, xK_Print), spawn "scrot -q 1 /home/jonnas/Imagens/screenshots/%Y-%m-%d-%H:%M:%S.png")
     ]
       ++
       --
@@ -170,7 +170,6 @@ myLayout = avoidStruts (tiled ||| Mirror tiled ||| Full)
 
     -- Percent of screen to increment by when resizing panes
     delta = 3 / 100
-
 ------------------------------------------------------------------------
 -- Window rules:
 
@@ -190,7 +189,8 @@ myManageHook =
   composeAll
     [ className =? "MPlayer" --> doFloat,
       className =? "Gimp" --> doFloat,
-      className =? "Skype" --> doFloat,
+      className =? "skype" --> doFloat,
+      className =? "forticlient" --> doFloat,
       resource =? "desktop_window" --> doIgnore,
       resource =? "kdesktop" --> doIgnore
     ]
