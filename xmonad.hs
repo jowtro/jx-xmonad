@@ -94,7 +94,7 @@ myKeys conf@(XConfig {XMonad.modMask = modm}) =
       -- , ((modm              , xK_b     ), sendMessage ToggleStruts)
 
       -- Quit xmonad
-      ((modm .|. shiftMask, xK_q), io (exitWith ExitSuccess)),
+      --((modm .|. shiftMask, xK_q), io (exitWith ExitSuccess)),
       -- Restart xmonad
       ((modm, xK_q), spawn "xmonad --recompile; xmonad --restart"),
       -- Run xmessage with a summary of the default keybindings (useful for beginners)
