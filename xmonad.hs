@@ -194,6 +194,7 @@ myManageHook =
       className =? "skype" --> doFloat,
       className =? "forticlient" --> doFloat,
       resource =? "desktop_window" --> doIgnore,
+      resource =? "pycharm" --> doFloat,
       resource =? "kdesktop" --> doIgnore
     ]
 
@@ -229,6 +230,7 @@ myStartupHook = do
   spawnOnce "stalonetray &"
   spawnOnce "nitrogen --restore &"
   spawnOnce "compton &"
+  setWMName "LG3D"
 
 -- Color of current window title in xmobar.
   -- Used to be #00CC00
