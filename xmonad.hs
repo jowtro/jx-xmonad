@@ -226,10 +226,11 @@ myLogHook = return()
 -- xrand monitor handler/tool
 -- autostart
 myStartupHook = do
-  spawnOnce "bash ~/xrand_conf"
+  spawnOnce "bash ~/xrandr.conf"
   spawnOnce "stalonetray &"
   spawnOnce "nitrogen --restore &"
   spawnOnce "compton &"
+  spawnOnce "thunderbird &"
   setWMName "LG3D"
 
 -- Color of current window title in xmobar.
