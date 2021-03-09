@@ -54,7 +54,7 @@ myKeys conf@(XConfig {XMonad.modMask = modm}) =
     -- launch a terminal
     [ ((modm .|. shiftMask, xK_Return), spawn $ XMonad.terminal conf),
       -- launch dmenu
-      ((modm, xK_p), spawn "dmenu_run"),
+      ((modm, xK_p), spawn "dmenu_run -fn 'Ubuntu Mono:normal:pixelsize=16' "),
       -- launch gmrun
       ((modm .|. shiftMask, xK_p), spawn "gmrun"),
       -- close focused window
