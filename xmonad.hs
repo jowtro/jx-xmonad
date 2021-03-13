@@ -12,8 +12,9 @@ import XMonad.Util.SpawnOnce
 import XMonad.Hooks.DynamicLog
 import XMonad.Hooks.SetWMName
 import XMonad.Layout.Spacing
-import XMonad.Layout.Tabbed
-myTerminal = "rxvt"
+--myTerminal = "rxvt"
+-- on arch linux uncomment below
+myTerminal = "urxvt"
 
 -- Whether focus follows the mouse pointer.
 myFocusFollowsMouse :: Bool
@@ -161,10 +162,10 @@ myMouseBindings (XConfig {XMonad.modMask = modm}) =
 -- The available layouts.  Note that each layout is separated by |||,
 -- which denotes layout choice.
 --
-myLayout = avoidStruts (simpleTabbed ||| tiled ||| Mirror tiled ||| Full)
+myLayout = avoidStruts (tiled ||| Mirror tiled ||| Full)
   where
     -- default tiling algorithm partitions the screen into two panes
-    tiled = spacing 3 $ Tall nmaster delta ratio
+    tiled = spacing 6 $ Tall nmaster delta ratio
 
     -- The default number of windows in the master pane
     nmaster = 1
