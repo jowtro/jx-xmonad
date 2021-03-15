@@ -45,7 +45,7 @@ myWorkspaces = ["1", "2", "3", "4", "5", "6", "7", "8", "9"]
 --
 myNormalBorderColor = "#dddddd"
 
-myFocusedBorderColor = "#ff0000"
+myFocusedBorderColor = "#9EBAF6"
 
 ------------------------------------------------------------------------
 -- Key bindings. Add, modify or remove key bindings here.
