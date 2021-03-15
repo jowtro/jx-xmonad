@@ -1,5 +1,4 @@
 # jx-xmonad
 
-# Xmonad 0.15 ubuntu package
-# contrib and extras installed
+# Xmonad
 my-xmonad conf file
