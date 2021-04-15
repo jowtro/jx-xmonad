@@ -50,7 +50,7 @@ myFocusedBorderColor = "#9EBAF6"
 ------------------------------------------------------------------------
 -- Key bindings. Add, modify or remove key bindings here.
 --
-myKeys conf@(XConfig {XMonad.modMask = modm}) =
+myKeys conf@XConfig {XMonad.modMask = modm} =
   M.fromList $
     -- launch a terminal
     [ ((modm .|. shiftMask, xK_Return), spawn $ XMonad.terminal conf),
@@ -130,28 +130,26 @@ myKeys conf@(XConfig {XMonad.modMask = modm}) =
 ------------------------------------------------------------------------
 -- Mouse bindings: default actions bound to mouse events
 --
-myMouseBindings (XConfig {XMonad.modMask = modm}) =
-  M.fromList $
+myMouseBindings XConfig {XMonad.modMask = modm} =
+  M.fromList
     -- mod-button1, Set the window to floating mode and move by dragging
     [ ( (modm, button1),
-        ( \w ->
+        \w ->
             focus w >> mouseMoveWindow w
               >> windows W.shiftMaster
-        )
       ),
       -- mod-button2, Raise the window to the top of the stack
-      ((modm, button2), (\w -> focus w >> windows W.shiftMaster)),
+      ((modm, button2), \w -> focus w >> windows W.shiftMaster),
       -- mod-button3, Set the window to floating mode and resize by dragging
       ( (modm, button3),
-        ( \w ->
+        \w ->
             focus w >> mouseResizeWindow w
               >> windows W.shiftMaster
-        )
       )
       -- you may also bind events to the mouse scroll wheel (button4 and button5)
     ]
 
-    
+
 -- Gaps around and between windows
 -- Changes only seem to apply if I log out then in again
 -- Dimensions are given as (Border top bottom right left)
@@ -172,7 +170,7 @@ mySpacing = spacingRaw True             -- Only for >1 window
 -- The available layouts.  Note that each layout is separated by |||,
 -- which denotes layout choice.
 --
-myLayout = avoidStruts (tiled ||| Mirror tiled ||| Full) 
+myLayout = avoidStruts (tiled ||| Mirror tiled ||| Full)
   where
     -- default tiling algorithm partitions the screen into two panes
     tiled = Tall nmaster delta ratio
@@ -287,7 +285,7 @@ defaults =
       keys = myKeys,
       mouseBindings = myMouseBindings,
       -- hooks, layouts
-      layoutHook = mySpacing $ myLayout,
+      layoutHook = mySpacing myLayout,
       manageHook = myManageHook,
       handleEventHook = myEventHook ,
       logHook = myLogHook ,
