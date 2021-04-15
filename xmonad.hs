@@ -151,6 +151,16 @@ myMouseBindings (XConfig {XMonad.modMask = modm}) =
       -- you may also bind events to the mouse scroll wheel (button4 and button5)
     ]
 
+    
+-- Gaps around and between windows
+-- Changes only seem to apply if I log out then in again
+-- Dimensions are given as (Border top bottom right left)
+mySpacing = spacingRaw True             -- Only for >1 window
+                       -- The bottom edge seems to look narrower than it is
+                       (Border 0 15 10 10) -- Size of screen edge gaps
+                       True             -- Enable screen edge gaps
+                       (Border 5 5 5 5) -- Size of window gaps
+                       True             -- Enable window gaps
 ------------------------------------------------------------------------
 -- Layouts:
 
@@ -162,10 +172,10 @@ myMouseBindings (XConfig {XMonad.modMask = modm}) =
 -- The available layouts.  Note that each layout is separated by |||,
 -- which denotes layout choice.
 --
-myLayout = avoidStruts (tiled ||| Mirror tiled ||| Full)
+myLayout = avoidStruts (tiled ||| Mirror tiled ||| Full) 
   where
     -- default tiling algorithm partitions the screen into two panes
-    tiled = spacing 6 $ Tall nmaster delta ratio
+    tiled = Tall nmaster delta ratio
 
     -- The default number of windows in the master pane
     nmaster = 1
@@ -233,8 +243,8 @@ myStartupHook = do
   spawnOnce "nitrogen --restore &"
   spawnOnce "compton &"
   spawnOnce "thunderbird &"
-  spawnOnce "stalonetray &"
   setWMName "LG3D"
+  spawnOnce "stalonetray -c ~/.stalonetrayrc &"
 
 -- Color of current window title in xmobar.
   -- Used to be #00CC00
@@ -277,7 +287,7 @@ defaults =
       keys = myKeys,
       mouseBindings = myMouseBindings,
       -- hooks, layouts
-      layoutHook = myLayout,
+      layoutHook = mySpacing $ myLayout,
       manageHook = myManageHook,
       handleEventHook = myEventHook ,
       logHook = myLogHook ,
