@@ -242,7 +242,7 @@ myStartupHook = do
   spawnOnce "compton &"
   spawnOnce "thunderbird &"
   setWMName "LG3D"
-  spawnOnce "stalonetray -c ~/.stalonetrayrc &"
+  spawnOnce "stalonetray -c /home/jowtro/.stalonetrayrc &"
 
 -- Color of current window title in xmobar.
   -- Used to be #00CC00
