@@ -106,7 +106,7 @@ myKeys conf@XConfig {XMonad.modMask = modm} =
       ((0, xF86XK_AudioMute), spawn "pactl set-sink-mute @DEFAULT_SINK@ toggle"),
       ((0, xF86XK_AudioLowerVolume), spawn "pactl set-sink-volume @DEFAULT_SINK@ -4%"),
       ((0, xF86XK_AudioRaiseVolume), spawn "pactl set-sink-volume @DEFAULT_SINK@ +4%"),
-      ((0, xK_Print), spawn "scrot -q 1 /home/jonnas/Imagens/screenshots/%Y-%m-%d-%H:%M:%S.png")
+      ((0, xK_Print), spawn "scrot -q 1 /home/jowtro/Imagens/screenshots/%Y-%m-%d-%H:%M:%S.png")
     ]
       ++
       --
@@ -257,7 +257,7 @@ xmobarCurrentWorkspaceColor = "#CEFFAC"
 -- Run xmonad with the settings you specify. No need to modify this.
 --
 main = do
-  xmproc <- spawnPipe "xmobar -x 0 /home/jonnas/.config/xmobar/xmobarrc"
+  xmproc <- spawnPipe "xmobar -x 0 /home/jowtro/.config/xmobar/xmobarrc"
   xmonad $ docks defaults {
       logHook = dynamicLogWithPP $ def { ppOutput = hPutStrLn xmproc }
   }
