@@ -54,6 +54,8 @@ myKeys conf@XConfig {XMonad.modMask = modm} =
   M.fromList $
     -- launch a terminal
     [ ((modm .|. shiftMask, xK_Return), spawn $ XMonad.terminal conf),
+      -- block screen
+      ((modm .|. shiftMask, xK_l), spawn "xflock4"),
       -- launch dmenu
       ((modm, xK_p), spawn "dmenu_run -fn 'Ubuntu Mono:normal:pixelsize=16' "),
       -- launch gmrun
@@ -239,10 +241,10 @@ myLogHook = return()
 myStartupHook = do
   spawnOnce "bash ~/xrandr.conf &"
   spawnOnce "nitrogen --restore &"
+  spawnOnce "trayer --SetPartialStrut true  --align right --edge top --widthtype percent --width 3 --height 20 --transparent true &"
   spawnOnce "compton &"
   spawnOnce "thunderbird &"
   setWMName "LG3D"
-  spawnOnce "stalonetray -c ~/.stalonetrayrc &"
 
 -- Color of current window title in xmobar.
   -- Used to be #00CC00
