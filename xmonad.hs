@@ -14,7 +14,7 @@ import XMonad.Hooks.SetWMName
 import XMonad.Layout.Spacing
 --myTerminal = "rxvt"
 -- on arch linux uncomment below
-myTerminal = "urxvt"
+myTerminal = "st"
 
 -- Whether focus follows the mouse pointer.
 myFocusFollowsMouse :: Bool
