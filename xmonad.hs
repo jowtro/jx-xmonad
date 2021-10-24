@@ -239,7 +239,6 @@ myLogHook = return()
 -- xrand monitor handler/tool
 -- autostart
 myStartupHook = do
-  spawnOnce "bash ~/xrandr.conf &"
   spawnOnce "nitrogen --restore &"
   spawnOnce "trayer --SetPartialStrut true  --align right --edge top --widthtype percent --width 3 --height 20 --transparent true &"
   spawnOnce "compton &"
@@ -259,7 +258,7 @@ xmobarCurrentWorkspaceColor = "#CEFFAC"
 -- Run xmonad with the settings you specify. No need to modify this.
 --
 main = do
-  xmproc <- spawnPipe "xmobar -x 0 /home/jonnas/.config/xmobar/xmobarrc"
+  xmproc <- spawnPipe "xmobar -x 0 /home/jowtro/.config/xmobar/xmobarrc"
   xmonad $ docks defaults {
       logHook = dynamicLogWithPP $ def { ppOutput = hPutStrLn xmproc }
   }
