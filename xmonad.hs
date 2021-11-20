@@ -258,8 +258,9 @@ xmobarCurrentWorkspaceColor = "#CEFFAC"
 
 -- Run xmonad with the settings you specify. No need to modify this.
 --
+-- jowtro is my actual username, when you ran this on a fresh install make sure that jowtro is replaced by your username.
 main = do
-  xmproc <- spawnPipe "xmobar -x 0 /home/jowtro/.config/xmobar/xmobarrc"
+  xmproc <- spawnPipe "/home/jowtro/.local/bin/xmobar -x 0 /home/jowtro/.config/xmobar/xmobarrc"
   xmonad $ docks defaults {
       logHook = dynamicLogWithPP $ def { ppOutput = hPutStrLn xmproc }
   }
