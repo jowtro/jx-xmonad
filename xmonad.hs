@@ -44,13 +44,6 @@ myBorderWidth = 1
 
 myModMask = mod4Mask
 
--- The default number of workspaces (virtual screens) and their names.
--- By default we use numeric strings, but any string may be used as a
--- workspace name. The number of workspaces is determined by the length
--- of this list.
---
--- A tagging example:
---
 -- > workspaces = ["web", "irc", "code" ] ++ map show [4..9]
 --
 myWorkspaces = ["1", "2", "3", "4", "5", "6", "7", "8", "9"]
@@ -73,6 +66,10 @@ myKeys conf@XConfig {XMonad.modMask = modm} =
     [ ((modm .|. shiftMask, xK_Return), spawn $ XMonad.terminal conf),
       -- Provides functionality to use key chords to focus a visible window
       ((modm, xK_f), selectWindow def >>= (`whenJust` windows . W.focusWindow)),
+      --full screen
+      ((modm .|. shiftMask, xK_f), sendMessage $ JumpToLayout "Full"),
+      -- BSP
+      ((modm .|. shiftMask, xK_g), sendMessage $ JumpToLayout "BSP"),
       -- Org mode - todo list
       ((modm, xK_o), orgPrompt def "TODO" "/home/jowtro/todos.org"),
       -- block screen
@@ -275,7 +272,6 @@ main = do
 
 
 
--- A structure containing your configuration settings, overriding
 -- fields in the default config. Any you don't override, will
 -- use the defaults defined in xmonad/XMonad/Config.hs
 --
