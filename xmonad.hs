@@ -12,6 +12,9 @@ import XMonad.Util.SpawnOnce
 import XMonad.Hooks.DynamicLog
 import XMonad.Hooks.SetWMName
 import XMonad.Layout.Spacing
+import XMonad.Prompt
+import XMonad.Prompt.OrgMode (orgPrompt)
+
 import XMonad.Actions.EasyMotion (selectWindow)
 --myTerminal = "rxvt"
 -- on arch linux uncomment below
@@ -48,6 +51,9 @@ myNormalBorderColor = "#dddddd"
 
 myFocusedBorderColor = "#9EBAF6"
 
+-- MY USERNAME
+jx_username = "jowtro"
+
 ------------------------------------------------------------------------
 -- Key bindings. Add, modify or remove key bindings here.
 --
@@ -57,6 +63,8 @@ myKeys conf@XConfig {XMonad.modMask = modm} =
     [ ((modm .|. shiftMask, xK_Return), spawn $ XMonad.terminal conf),
       -- Provides functionality to use key chords to focus a visible window
       ((modm, xK_f), selectWindow def >>= (`whenJust` windows . W.focusWindow)),
+      -- Org mode - todo list
+      ((modm, xK_o), orgPrompt def "TODO" "/home/jowtro/todos.org"),
       -- block screen
       ((modm .|. shiftMask, xK_l), spawn "xflock4"),
       -- launch dmenu
