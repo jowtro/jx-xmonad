@@ -52,7 +52,7 @@ myWorkspaces = ["1", "2", "3", "4", "5", "6", "7", "8", "9"]
 --
 myNormalBorderColor = "#dddddd"
 
-myFocusedBorderColor = "#9EBAF6"
+myFocusedBorderColor = "#6560eb"
 
 -- MY USERNAME
 jx_username = "jowtro"
@@ -185,7 +185,7 @@ mySpacing = spacingRaw True             -- Only for >1 window
 -- layout
 ------------------------------------------------------------------------
 
-myLayout = BO.lessBorders BO.Never $ avoidStruts (full ||| tiled ||| grid ||| bsp)
+myLayout = BO.lessBorders BO.Never $ avoidStruts (full ||| bsp ||| grid ||| tiled )
   where
      -- full
      full = renamed [Replace "Full"] 
