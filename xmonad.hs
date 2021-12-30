@@ -72,6 +72,8 @@ myKeys conf@XConfig {XMonad.modMask = modm} =
       ((modm .|. shiftMask, xK_g), sendMessage $ JumpToLayout "BSP"),
       -- Org mode - todo list
       ((modm, xK_o), orgPrompt def "TODO" "/home/jowtro/todos.org"),
+      -- kill xmobar
+      ((modm .|. shiftMask, xK_u), spawn "/home/jowtro/kxmobar" ),
       -- block screen
       ((modm .|. shiftMask, xK_l), spawn "xflock4"),
       -- launch dmenu
