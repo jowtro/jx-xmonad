@@ -249,7 +249,7 @@ myLogHook = return()
 -- autostart
 myStartupHook = do
   spawnOnce "nitrogen --restore &"
-  spawnOnce "trayer --SetPartialStrut true  --align right --edge top --widthtype percent --width 3 --height 20 --transparent true &"
+  spawnOnce "trayer --edge top --align right --SetDockType true --SetPartialStrut true --expand true --widthtype request --transparent true --tint 0x191970 --height 25 --distancefrom right --monitor 1&"
   spawnOnce "compton &"
   spawnOnce "thunderbird &"
   setWMName "LG3D"
