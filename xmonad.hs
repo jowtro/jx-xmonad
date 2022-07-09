@@ -26,6 +26,7 @@ import XMonad.Layout.Spacing
 import XMonad.Layout.GridVariants
 import XMonad.Layout.ResizableTile
 import XMonad.Layout.BinarySpacePartition
+
 --myTerminal = "rxvt"
 -- on arch linux uncomment below
 myTerminal = "st"
@@ -46,7 +47,7 @@ myModMask = mod4Mask
 
 -- > workspaces = ["web", "irc", "code" ] ++ map show [4..9]
 --
-myWorkspaces = ["1", "2", "3", "4", "5", "6", "7", "8", "9"]
+myWorkspaces = ["web1", "2", "code3", "code4", "5", "6", "7", "8", "media9"]
 
 -- Border colors for unfocused and focused windows, respectively.
 --
@@ -63,7 +64,7 @@ jx_username = "jowtro"
 myKeys conf@XConfig {XMonad.modMask = modm} =
   M.fromList $
     -- launch a terminal
-    [ ((modm .|. shiftMask, xK_Return), spawn $ XMonad.terminal conf),
+    [ ((modm .|. shiftMask, xK_Return), spawn $  XMonad.terminal conf),
       -- Provides functionality to use key chords to focus a visible window
       ((modm, xK_f), selectWindow def >>= (`whenJust` windows . W.focusWindow)),
       --full screen
