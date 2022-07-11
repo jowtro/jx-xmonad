@@ -39,7 +39,7 @@ myModMask = mod4Mask
 --
 -- > workspaces = ["web", "irc", "code" ] ++ map show [4..9]
 --
-myWorkspaces = ["1", "2", "3", "4", "5", "6", "7", "8", "9"]
+myWorkspaces = ["Web", "2", "3", "4", "5", "6", "7", "8", "9"]
 
 -- Border colors for unfocused and focused windows, respectively.
 --
@@ -242,7 +242,7 @@ myLogHook = return()
 myStartupHook = do
   spawnOnce "bash ~/xrandr.conf &"
   spawnOnce "nitrogen --restore &"
-  spawnOnce "trayer --SetPartialStrut true  --align right --edge top --widthtype percent --width 3 --height 20 --transparent true &"
+  spawnOnce "trayer --edge top --align right --SetDockType true --SetPartialStrut true --expand true --widthtype request --transparent true --tint 0x191970 --height 25 --distancefrom right --monitor 1&"
   spawnOnce "compton &"
   spawnOnce "thunderbird &"
   setWMName "LG3D"
