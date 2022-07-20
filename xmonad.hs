@@ -242,7 +242,7 @@ myLogHook = return()
 myStartupHook = do
   spawnOnce "bash ~/xrandr.conf &"
   spawnOnce "nitrogen --restore &"
-  spawnOnce "trayer --edge top --align right --SetDockType true --SetPartialStrut true --expand true --widthtype request --transparent true --tint 0x191970 --height 25 --distancefrom right --monitor 1&"
+  spawnOnce "nohup trayer --edge top --align right --SetDockType true --SetPartialStrut true --expand true --widthtype request --transparent true --tint 0x191970 --height 25 --distancefrom right --monitor 1&"
   spawnOnce "compton &"
   spawnOnce "thunderbird &"
   setWMName "LG3D"
