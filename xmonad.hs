@@ -29,7 +29,7 @@ import XMonad.Layout.BinarySpacePartition
 
 --myTerminal = "rxvt"
 -- on arch linux uncomment below
-myTerminal = "st"
+myTerminal = "tilix"
 
 -- Whether focus follows the mouse pointer.
 myFocusFollowsMouse :: Bool
