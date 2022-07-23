@@ -77,6 +77,8 @@ myKeys conf@XConfig {XMonad.modMask = modm} =
       ((modm .|. shiftMask, xK_u), spawn "/home/jowtro/kxmobar" ),
       -- block screen
       ((modm .|. shiftMask, xK_l), spawn "xflock4"),
+      -- run script that shows keybindins
+      ((modm, xK_s), spawn "/home/jowtro/.xmonad/xmonad_keybindings.sh"),
       -- launch dmenu
       ((modm, xK_p), spawn "dmenu_run -fn 'Ubuntu Mono:normal:pixelsize=16' "),
       -- launch gmrun
