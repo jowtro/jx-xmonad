@@ -243,7 +243,7 @@ myStartupHook = do
   spawnOnce "bash ~/xrandr.conf &"
   spawnOnce "nitrogen --restore &"
   spawnOnce "nohup trayer --edge top --align right --SetDockType true --SetPartialStrut true --expand true --widthtype request --transparent true --tint 0x191970 --height 25 --distancefrom right --monitor 1&"
-  spawnOnce "compton &"
+  spawnOnce "picom &"
   spawnOnce "thunderbird &"
   setWMName "LG3D"
 
@@ -260,7 +260,7 @@ xmobarCurrentWorkspaceColor = "#CEFFAC"
 -- Run xmonad with the settings you specify. No need to modify this.
 --
 main = do
-  xmproc <- spawnPipe "xmobar -x 0 /home/jonnas/.config/xmobar/xmobarrc"
+  xmproc <- spawnPipe "xmobar"
   xmonad $ docks defaults {
       logHook = dynamicLogWithPP $ def { ppOutput = hPutStrLn xmproc }
   }
