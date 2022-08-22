@@ -57,7 +57,9 @@ myKeys conf@XConfig {XMonad.modMask = modm} =
       -- block screen
       ((modm .|. shiftMask, xK_l), spawn "xflock4"),
       -- launch dmenu
-      ((modm, xK_p), spawn "dmenu_run -fn 'Ubuntu Mono:normal:pixelsize=16' "),
+--      ((modm, xK_p), spawn "dmenu_run -fn 'Ubuntu Mono:normal:pixelsize=16' "),
+      ((modm, xK_period), spawn "dmenu_run -fn 'Ubuntu Mono:normal:pixelsize=16' "),
+      ((modm, xK_p), spawn "rofi -show run"),
       -- launch gmrun
       ((modm .|. shiftMask, xK_p), spawn "gmrun"),
       -- close focused window
@@ -91,7 +93,7 @@ myKeys conf@XConfig {XMonad.modMask = modm} =
       -- Increment the number of windows in the master area
       ((modm, xK_comma), sendMessage (IncMasterN 1)),
       -- Deincrement the number of windows in the master area
-      ((modm, xK_period), sendMessage (IncMasterN (-1))),
+      --((modm, xK_period), sendMessage (IncMasterN (-1))),
       -- Toggle the status bar gap
       -- Use this binding with avoidStruts from Hooks.ManageDocks.
       -- See also the statusBar function from Hooks.DynamicLog.
