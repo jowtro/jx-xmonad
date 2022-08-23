@@ -92,6 +92,8 @@ myKeys conf@XConfig {XMonad.modMask = modm} =
       ((modm, xK_t), withFocused $ windows . W.sink),
       -- Increment the number of windows in the master area
       ((modm, xK_comma), sendMessage (IncMasterN 1)),
+      ((0, xF86XK_MonBrightnessUp), spawn "lux -a 10%"),
+      ((0, xF86XK_MonBrightnessDown), spawn "lux -s 10%"),
       -- Deincrement the number of windows in the master area
       --((modm, xK_period), sendMessage (IncMasterN (-1))),
       -- Toggle the status bar gap
