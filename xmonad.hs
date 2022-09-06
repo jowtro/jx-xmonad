@@ -9,6 +9,7 @@ import System.Exit
 import XMonad
 import Graphics.X11.ExtraTypes.XF86
 import XMonad.Hooks.ManageDocks
+import XMonad.Hooks.EwmhDesktops
 import qualified XMonad.StackSet as W
 import XMonad.Util.Run (spawnPipe, hPutStrLn)
 import XMonad.Util.SpawnOnce
@@ -26,6 +27,7 @@ import XMonad.Layout.Spacing
 import XMonad.Layout.GridVariants
 import XMonad.Layout.ResizableTile
 import XMonad.Layout.BinarySpacePartition
+import XMonad.Hooks.WindowSwallowing
 
 --myTerminal = "rxvt"
 -- on arch linux uncomment below
@@ -47,7 +49,7 @@ myModMask = mod4Mask
 
 -- > workspaces = ["web", "irc", "code" ] ++ map show [4..9]
 --
-myWorkspaces = ["web1", "2", "code3", "code4", "5", "6", "7", "8", "media9"]
+myWorkspaces = ["WWW", "TER", "DEV", "TER2", "VID", "CHAT", "MUS", "MISC", "EMAIL"]
 
 -- Border colors for unfocused and focused windows, respectively.
 --
@@ -77,13 +79,15 @@ myKeys conf@XConfig {XMonad.modMask = modm} =
       ((modm .|. shiftMask, xK_u), spawn "/home/jowtro/kxmobar" ),
       -- block screen
       ((modm .|. shiftMask, xK_l), spawn "xflock4"),
+      -- spawn browser
+      ((modm, xK_b), spawn "google-chrome-stable"),
       -- run script that shows keybindins
       ((modm, xK_s), spawn "/home/jowtro/.xmonad/xmonad_keybindings.sh"),
       -- launch dmenu
-      ((modm, xK_p), spawn "dmenu_run -fn 'Ubuntu Mono:normal:pixelsize=16' "),
-      -- launch gmrun
-      ((modm .|. shiftMask, xK_p), spawn "gmrun"),
-      -- close focused window
+      --((modm, xK_p), spawn "dmenu_run -fn 'Ubuntu Mono:normal:pixelsize=16' "),
+      ((modm, xK_p), spawn "rofi -combi-modi window,drun,ssh,run  -show combi -show-icons"),
+      ((modm .|. shiftMask, xK_p), spawn "dmenu_run -fn 'Ubuntu Mono:normal:pixelsize=16' "),
+            -- close focused window
       ((modm .|. shiftMask, xK_c), kill),
       -- Rotate through the available layout algorithms
       ((modm, xK_space), sendMessage NextLayout),
@@ -124,7 +128,7 @@ myKeys conf@XConfig {XMonad.modMask = modm} =
       -- Quit xmonad
       --((modm .|. shiftMask, xK_q), io (exitWith ExitSuccess)),
       -- Restart xmonad
-      ((modm, xK_q), spawn "xmonad --recompile; xmonad --restart"),
+      ((modm .|. shiftMask, xK_q), spawn "xmonad --recompile; xmonad --restart"),
       -- Run xmessage with a summary of the default keybindings (useful for beginners)
       ((modm .|. shiftMask, xK_slash), spawn ("echo \"" ++ help ++ "\" | xmessage -file -")),
        -- sound control via keybind requires pactl
@@ -236,7 +240,7 @@ myManageHook =
 ------------------------------------------------------------------------
 -- Event handling
 --
-myEventHook = mempty
+myEventHook = swallowEventHook (className =? "Tilix" <||> className =? "Xterm") (return True)
 
 ------------------------------------------------------------------------
 -- Status bars and logging
@@ -271,9 +275,9 @@ xmobarCurrentWorkspaceColor = "#CEFFAC"
 -- jowtro is my actual username, when you ran this on a fresh install make sure that jowtro is replaced by your username.
 main = do
   xmproc <- spawnPipe "/home/jowtro/.local/bin/xmobar -x 0 /home/jowtro/.config/xmobar/xmobarrc"
-  xmonad $ docks defaults {
+  xmonad $ ewmh $ docks defaults {
       logHook = dynamicLogWithPP $ def { ppOutput = hPutStrLn xmproc }
-  }
+  }  
 
 
 
