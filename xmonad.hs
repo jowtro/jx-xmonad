@@ -70,6 +70,8 @@ myKeys conf@XConfig {XMonad.modMask = modm} =
       ((modm .|. shiftMask, xK_space), setLayout $ XMonad.layoutHook conf),
       -- Resize viewed windows to the correct size
       ((modm, xK_n), refresh),
+      -- Open Browser
+      ((modm, xK_b), spawn "brave-browser"),
       -- Move focus to the next window
       ((modm, xK_Tab), windows W.focusDown),
       -- Move focus to the next window
